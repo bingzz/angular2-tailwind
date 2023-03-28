@@ -1,0 +1,10 @@
+<h2>Details about the car:</h2>
+<div><span>ID: {{car.id}}</span></div>
+<div><span>Brand: {{car.brand | uppercase}}</span></div>
+<div><span>Model: {{car.model}}</span></div>
+<div><span>Year: {{car.year}}</span></div>
+
+<div>
+  <label for="brand">Car Brand: </label>
+  <input id="brand" [(ngModel)]="car.brand" placeholder="Car Brand" />
+</div>
