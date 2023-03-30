@@ -14,14 +14,12 @@
 </div>
 
 <h2>Car List</h2>
-<ul>
+<ul class="cars">
   <li *ngFor="let car of cars">
-    <div [class.selected]="car === selectedCar" (click)="onSelect(car)">
-      <button type="button">
-        +
-      </button>
-      <span> {{car.year}} {{car.brand}} {{car.model}}</span>
-    </div>
+    <button type="button" [class.selected]="car === selectedCar" (click)="onSelect(car)">
+      <span class="badge">{{car.id}}</span>
+      <span class="name">{{car.brand}} {{car.model}}</span>
+    </button>
   </li>
 </ul>
 
