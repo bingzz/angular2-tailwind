@@ -7,9 +7,9 @@ import { Car, Driver } from '../car';
   styleUrls: ['./cars.component.css']
 })
 
-// scope variables
+// variables
 export class CarsComponent {
-  // initializing variables
+  // initializing variables to be used in html
   input: string = '';
   selectedCar?: Car;
 

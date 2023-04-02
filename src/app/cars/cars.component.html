@@ -1,4 +1,6 @@
+<!-- app-cars -->
 <h2>Details about the car:</h2>
+<!-- car variable -->
 <div><span>ID: {{car.id}}</span></div>
 <div><span>Brand: {{car.brand}}</span></div>
 <div><span>Model: {{car.model}}</span></div>
@@ -15,7 +17,10 @@
 
 <h2>Car List</h2>
 <ul class="cars">
+  <!-- for loop -->
   <li *ngFor="let car of cars">
+    <!-- class.cssName = condition -->
+    <!-- (click) = click function -->
     <button type="button" [class.selected]="car === selectedCar" (click)="onSelect(car)">
       <span class="badge">{{car.id}}</span>
       <span class="name">{{car.brand}} {{car.model}}</span>
@@ -23,20 +28,5 @@
   </li>
 </ul>
 
-<div *ngIf="selectedCar">
-  <h2>{{selectedCar.year}} {{selectedCar.brand}} {{selectedCar.model}}</h2>
-  <div>
-    <label for="carYear">
-      Year:
-      <input type="text" id="carYear" [(ngModel)]="selectedCar.year"/>
-    </label>
-    <label for="carBrand">
-      Brand:
-      <input type="text" id="carBrand" [(ngModel)]="selectedCar.brand"/>
-    </label>
-    <label for="carModel">
-      Model:
-      <input type="text" id="carModel" [(ngModel)]="selectedCar.model"/>
-    </label>
-  </div>
-</div>
+<!-- Component inside component, [variable parameter]="selected parameter from this controller" -->
+<app-car-detail [car]="selectedCar"></app-car-detail>

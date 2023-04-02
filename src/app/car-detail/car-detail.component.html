@@ -1,0 +1,18 @@
+<!-- car variable from selectedCar -->
+<div *ngIf="car">
+  <h2>{{car.year}} {{car.brand}} {{car.model}}</h2>
+  <div>
+    <label for="carYear">
+      Year:
+      <input type="text" id="carYear" [(ngModel)]="car.year" />
+    </label>
+    <label for="carBrand">
+      Brand:
+      <input type="text" id="carBrand" [(ngModel)]="car.brand" />
+    </label>
+    <label for="carModel">
+      Model:
+      <input type="text" id="carModel" [(ngModel)]="car.model" />
+    </label>
+  </div>
+</div>
