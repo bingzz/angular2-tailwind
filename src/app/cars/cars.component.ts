@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Car, Driver } from '../car';
+import { CarService } from '../car.service';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-cars',
@@ -8,10 +10,19 @@ import { Car, Driver } from '../car';
 })
 
 // variables
-export class CarsComponent {
+export class CarsComponent implements OnInit {
+  // Create constructor
+  constructor(
+    private carService: CarService,
+    private messageService: MessageService
+  ) { }
+
   // initializing variables to be used in html
   input: string = '';
   selectedCar?: Car;
+
+  cars: Car[] = [];
+  // cars = CARS;
 
   car: Car = {
     id: 1,
@@ -27,43 +38,25 @@ export class CarsComponent {
     age: 27,
   };
 
-  cars = CARS;
+  // Initialize
+  ngOnInit(): void {
+    this.getCars();
+  }
 
   // functions
   onSelect(car: Car): void {
     this.selectedCar = car;
+    this.messageService.add(`CarsComponent: selected car id=${car.id}`);
+  }
+
+  // Function in this component
+  getCars(): void {
+    // this.cars = this.carService.getCars(); // synchronous call
+
+    // asynchronous call
+    this.carService.getCars()
+      .subscribe(cars => this.cars = cars);
   }
 }
 
-export const CARS: Car[] = [
-  {
-    id: 1,
-    brand: 'Honda',
-    model: 'CRV',
-    year: 2013,
-  },
-  {
-    id: 2,
-    brand: 'Toyota',
-    model: 'Corolla',
-    year: 2018,
-  },
-  {
-    id: 3,
-    brand: 'Mitsubishi',
-    model: 'Lancer',
-    year: 2009,
-  },
-  {
-    id: 4,
-    brand: 'Subaru',
-    model: 'Impreza',
-    year: 2021,
-  },
-  {
-    id: 5,
-    brand: 'BMW',
-    model: '325i',
-    year: 2019,
-  },
-];
+
