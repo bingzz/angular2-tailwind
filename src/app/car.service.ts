@@ -18,4 +18,9 @@ export class CarService {
     return cars;
   }
 
+  getCar(id: number): Observable<Car> {
+    const car = CARS.find(h => h.id === id)!;
+    this.messageService.add(`MessageService: Fetched Car ID: ${id}`);
+    return of(car);
+  }
 }

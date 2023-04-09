@@ -1,19 +1,19 @@
 <!-- app-cars -->
-<h2>Details about the car:</h2>
+<!-- <h2>Details about the car:</h2> -->
 <!-- car variable -->
-<div><span>ID: {{car.id}}</span></div>
+<!-- <div><span>ID: {{car.id}}</span></div>
 <div><span>Brand: {{car.brand}}</span></div>
 <div><span>Model: {{car.model}}</span></div>
-<div><span>Year: {{car.year}}</span></div>
+<div><span>Year: {{car.year}}</span></div> -->
 
-<div>
+<!-- <div>
   <label for="brand">Car Brand: </label>
   <input id="brand" [(ngModel)]="input" placeholder="Car Brand" />
-</div>
+</div> -->
 
-<div>
+<!-- <div>
   You entered: {{input}}
-</div>
+</div> -->
 
 <h2>Car List</h2>
 <ul class="cars">
@@ -21,12 +21,15 @@
   <li *ngFor="let car of cars">
     <!-- class.cssName = condition -->
     <!-- (click) = click function -->
-    <button type="button" [class.selected]="car === selectedCar" (click)="onSelect(car)">
+    <!-- <button type="button" [class.selected]="car === selectedCar" (click)="onSelect(car)">
       <span class="badge">{{car.id}}</span>
       <span class="name">{{car.brand}} {{car.model}}</span>
-    </button>
+    </button> -->
+    <a routerLink="/details/{{car.id}}">
+      <span class="badge">{{car.brand}} {{car.model}}</span>
+    </a>
   </li>
 </ul>
 
 <!-- Component inside component, [variable parameter]="selected parameter from this controller" -->
-<app-car-detail [car]="selectedCar"></app-car-detail>
+<!-- <app-car-detail [car]="selectedCar"></app-car-detail> -->

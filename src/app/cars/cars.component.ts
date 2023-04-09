@@ -18,25 +18,25 @@ export class CarsComponent implements OnInit {
   ) { }
 
   // initializing variables to be used in html
-  input: string = '';
+  // input: string = '';
   selectedCar?: Car;
 
   cars: Car[] = [];
   // cars = CARS;
 
-  car: Car = {
-    id: 1,
-    brand: 'Honda',
-    model: 'Civic',
-    year: 2015
-  };
+  // car: Car = {
+  //   id: 1,
+  //   brand: 'Honda',
+  //   model: 'Civic',
+  //   year: 2015
+  // };
 
-  driver: Driver = {
-    id: 1,
-    firstName: 'irving',
-    lastName: 'real',
-    age: 27,
-  };
+  // driver: Driver = {
+  //   id: 1,
+  //   firstName: 'irving',
+  //   lastName: 'real',
+  //   age: 27,
+  // };
 
   // Initialize
   ngOnInit(): void {

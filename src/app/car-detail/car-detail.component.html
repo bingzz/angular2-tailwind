@@ -1,4 +1,5 @@
 <!-- car variable from selectedCar -->
+
 <div *ngIf="car">
   <h2>{{car.year}} {{car.brand}} {{car.model}}</h2>
   <div>
@@ -15,4 +16,5 @@
       <input type="text" id="carModel" [(ngModel)]="car.model" />
     </label>
   </div>
+  <button type="button" (click)="goBack()">Go back</button>
 </div>
