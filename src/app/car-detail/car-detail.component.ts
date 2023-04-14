@@ -30,5 +30,12 @@ export class CarDetailComponent {
     this.location.back();
   }
 
+  save(): void {
+    if (this.car) {
+      this.carService.updateCar(this.car)
+        .subscribe(() => this.goBack());
+    }
+  }
+
   @Input() car?: Car;
 }

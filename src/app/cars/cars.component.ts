@@ -20,6 +20,11 @@ export class CarsComponent implements OnInit {
   // initializing variables to be used in html
   // input: string = '';
   selectedCar?: Car;
+  newCar = {
+    brand: '',
+    model: '',
+    year: ''
+  };
 
   cars: Car[] = [];
   // cars = CARS;
@@ -38,7 +43,7 @@ export class CarsComponent implements OnInit {
   //   age: 27,
   // };
 
-  // Initialize
+  // Initialize functions?
   ngOnInit(): void {
     this.getCars();
   }
@@ -50,12 +55,30 @@ export class CarsComponent implements OnInit {
   }
 
   // Function in this component
+  // READ CARS
   getCars(): void {
     // this.cars = this.carService.getCars(); // synchronous call
 
     // asynchronous call
     this.carService.getCars()
       .subscribe(cars => this.cars = cars);
+  }
+
+  // CREATE NEW CAR
+  add(newCar: any): void {
+    const notEmpty = Object.values(newCar).every(val => val !== '')
+    if (!notEmpty) return;
+
+    this.carService.addCar({...newCar} as Car)
+      .subscribe(car => {
+        this.cars.push(car);
+      });
+  }
+
+  // DELETE CAR
+  delete(car: Car): void {
+    this.cars = this.cars.filter(c => c !== car);
+    this.carService.deleteCar(car.id).subscribe();
   }
 }
 

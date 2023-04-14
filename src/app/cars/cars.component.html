@@ -28,8 +28,17 @@
     <a routerLink="/details/{{car.id}}">
       <span class="badge">{{car.brand}} {{car.model}}</span>
     </a>
+    <button type="button" class="delete" title="Delete Car" (click)="delete(car)">Delete</button>
   </li>
 </ul>
 
+<div>
+  <label for="new-car">Car name:</label>
+  <input type="text" id="new-car" [(ngModel)]="newCar.brand" placeholder="Brand" />
+  <input type="text" id="new-car" [(ngModel)]="newCar.model" placeholder="Model" />
+  <input type="text" id="new-car" [(ngModel)]="newCar.year" placeholder="Year" />
+
+  <button type="button" class="add-button" (click)="add(newCar);">Add Car</button>
+</div>
 <!-- Component inside component, [variable parameter]="selected parameter from this controller" -->
 <!-- <app-car-detail [car]="selectedCar"></app-car-detail> -->
