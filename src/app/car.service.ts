@@ -22,12 +22,11 @@ export class CarService {
     private messageService: MessageService,
   ) { }
 
-
-
   private log(message: string) {
     this.messageService.add(`CarService: ${message}`);
   }
 
+  // Handle HTTP operation that failed, let the app continue
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
@@ -36,6 +35,19 @@ export class CarService {
 
       return of(result as T);
     }
+  }
+
+  getCarsNo404<Data>(id: number): Observable<Car> {
+    const url = `${this.carsUrl}/?id=${id}`;
+    return this.http.get<Car[]>(url).pipe(
+      map(cars => cars[0]),
+      tap(c => {
+        const outcome = c ? 'Fetched' : 'Not found';
+        this.log(`${outcome} Car ID: ${id}`);
+      }),
+      catchError(this.handleError<Car>(`getCar ID: ${id}`))
+
+    )
   }
 
   // Create asynchronous request to the server
@@ -78,11 +90,20 @@ export class CarService {
 
   deleteCar(id: number): Observable<Car> {
     const url = `${this.carsUrl}/${id}`;
-
     return this.http.delete<Car>(url, this.httpOptions).pipe(
       tap(_ => this.log(`Deleted Car ID: ${id}`)),
       catchError(this.handleError<Car>(`DeleteCar`))
     );
   }
 
+  searchCars(term: string): Observable<Car[]> {
+    if (!term.trim()) return of([]);
+
+    return this.http.get<Car[]>(`${this.carsUrl}/?brand=${term}`).pipe(
+      tap(x => x.length ?
+        this.log(`Found Cars matching ${term}`) :
+        this.log(`No Cars matching ${term}`)),
+        catchError(this.handleError<Car[]>('SearchCars', []))
+    );
+  }
 }
